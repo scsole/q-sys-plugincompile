@@ -20,5 +20,10 @@ rm "info.lua-E" 2>/dev/null | true
 set -x
 cd "${USERPROFILE}"
 mkdir -p "${pluginsPath}"
-cp "${curdir}/${2}.qplug" \
-    "${USERPROFILE}/${pluginsPath}/${2}.qplug"
+if [ -e "${curdir}/${2}.qplugx" ]; then
+    cp "${curdir}/${2}.qplugx" \
+        "${USERPROFILE}/${pluginsPath}/${2}.qplugx"
+else
+    cp "${curdir}/${2}.qplug" \
+        "${USERPROFILE}/${pluginsPath}/${2}.qplug"
+fi
