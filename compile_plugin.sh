@@ -1,7 +1,6 @@
 #!/bin/sh
 
-if test "$1" = "CANCEL"
-then
+if test "$1" = "CANCEL"; then
   exit 1
 fi
 
@@ -9,11 +8,10 @@ fi
 PATH="$PATH:$(dirname $0)"
 #echo $PATH
 
-if test "$1" != "ver_none"
-then
+if test "$1" != "ver_none"; then
 
   # STEP 1 Increment BuildVersion Number
-  oldnum="$( grep 'BuildVersion' info.lua | cut -d $'\"' -f2 | cut -d $'\"' -f1 )"
+  oldnum="$(grep 'BuildVersion' info.lua | cut -d $'\"' -f2 | cut -d $'\"' -f1)"
   #echo $oldnum
   newnum="$oldnum"
 
@@ -24,32 +22,28 @@ then
   fixnum=${fixnum##*.}
   devnum=${oldnum##*.}
 
-  if test "$1" = "ver_maj"
-  then
+  if test "$1" = "ver_maj"; then
     echo "updating buildversion major num"
 
     #majnum=${oldnum:0:1}
     ((majnum++))
     newnum="$majnum.0.0.0"
 
-  elif test "$1" = "ver_min"
-  then
+  elif test "$1" = "ver_min"; then
     echo "updating buildversion minor num"
 
     #minnum=${oldnum:2:1}
     ((minnum++))
     newnum="$majnum.$minnum.0.0"
 
-  elif test "$1" = "ver_fix"
-  then
+  elif test "$1" = "ver_fix"; then
     echo "updating buildversion fix num"
 
     #fixnum=${oldnum:4:1}
     ((fixnum++))
     newnum="$majnum.$minnum.$fixnum.0"
 
-  elif test "$1" = "ver_dev"
-  then
+  elif test "$1" = "ver_dev"; then
     echo "updating buildversion dev num"
 
     #devnum=${oldnum:6:1}
@@ -72,13 +66,12 @@ else
 fi
 
 # STEP 2 Create new GUID if the plugin doesn't already have one
-oldid="$( grep 'Id' info.lua | cut -d $'\"' -f2 | cut -d $'\"' -f1 )"
+oldid="$(grep 'Id' info.lua | cut -d $'\"' -f2 | cut -d $'\"' -f1)"
 #echo $oldid
 
-if test "$oldid" = "<guid>"
-then
+if test "$oldid" = "<guid>"; then
   echo "generating guid for plugin"
-  newid="$( uuidgen )"
+  newid="$(uuidgen)"
   #echo $newid
   sed -i -E "s/$oldid/$newid/" info.lua
 fi
