@@ -51,7 +51,7 @@ if test "$1" != "ver_none"; then
     #fixnum=${oldnum:4:1}
     ((fixnum++))
     newnum="$majnum.$minnum.$fixnum.0"
-    newver="$majnum.$minnum..$fixnum"
+    newver="$majnum.$minnum.$fixnum"
 
   elif test "$1" = "ver_dev"; then
     echo "updating buildversion dev num"
