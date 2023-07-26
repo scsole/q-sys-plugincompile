@@ -27,7 +27,7 @@ if test "$1" != "ver_none"; then
   fixnum=${fixnum##*.}
   devnum=${oldnum##*.}
 
-  newver="$majnum.$minnum"
+  newver="$majnum.$minnum.$fixnum"
 
   if test "$1" = "ver_maj"; then
     echo "updating buildversion major num"
@@ -35,7 +35,7 @@ if test "$1" != "ver_none"; then
     #majnum=${oldnum:0:1}
     ((majnum++))
     newnum="$majnum.0.0.0"
-    newver="$majnum.0"
+    newver="$majnum.0.0"
 
   elif test "$1" = "ver_min"; then
     echo "updating buildversion minor num"
@@ -43,7 +43,7 @@ if test "$1" != "ver_none"; then
     #minnum=${oldnum:2:1}
     ((minnum++))
     newnum="$majnum.$minnum.0.0"
-    newver="$majnum.$minnum"
+    newver="$majnum.$minnum.0"
 
   elif test "$1" = "ver_fix"; then
     echo "updating buildversion fix num"
@@ -51,7 +51,7 @@ if test "$1" != "ver_none"; then
     #fixnum=${oldnum:4:1}
     ((fixnum++))
     newnum="$majnum.$minnum.$fixnum.0"
-    newver="$majnum.$minnum"
+    newver="$majnum.$minnum..$fixnum"
 
   elif test "$1" = "ver_dev"; then
     echo "updating buildversion dev num"
@@ -59,7 +59,7 @@ if test "$1" != "ver_none"; then
     #devnum=${oldnum:6:1}
     ((devnum++))
     newnum="$majnum.$minnum.$fixnum.$devnum"
-    newver="$majnum.$minnum"
+    newver="$majnum.$minnum.$fixnum"
 
   else
     echo "updating buildversion dev num"
@@ -67,7 +67,7 @@ if test "$1" != "ver_none"; then
     #devnum=${oldnum:6:1}
     ((devnum++))
     newnum="$majnum.$minnum.$fixnum.$devnum"
-    newver="$majnum.$minnum"
+    newver="$majnum.$minnum.$fixnum"
 
   fi
 
